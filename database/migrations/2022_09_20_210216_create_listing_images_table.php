@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('listing_images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->foreignId('user_id')->index();
+            $table->string('path');
             $table->foreignId('listing_id')->index();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('listing_images');
     }
 };

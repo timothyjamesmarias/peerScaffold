@@ -16,6 +16,11 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->foreignId('listing_id')->index();
+            $table->foreignId('request_id')->index();
+
         });
     }
 

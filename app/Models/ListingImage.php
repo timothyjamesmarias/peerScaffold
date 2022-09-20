@@ -5,22 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class ListingImage extends Model
 {
     use HasFactory;
 
     /**
-     * Get the request that owns the Transaction
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function request(): BelongsTo
-    {
-        return $this->belongsTo(Request::class);
-    }
-
-    /**
-     * Get the listing that owns the Transaction
+     * Get the listing that owns the ListingImage
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -28,5 +18,4 @@ class Transaction extends Model
     {
         return $this->belongsTo(Listing::class);
     }
-
 }
