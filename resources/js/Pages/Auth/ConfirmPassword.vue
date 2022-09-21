@@ -3,6 +3,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import AuthFormContainer from '@/Components/AuthFormContainer.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
@@ -17,8 +18,11 @@ const submit = () => {
 </script>
 
 <template>
-        <Head title="Confirm Password" />
+    <Head title="Confirm Password" />
 
+    <PageTitle>Confirm Password</PageTitle>
+
+    <AuthFormContainer>
         <div class="mb-4 text-sm text-gray-600">
             This is a secure area of the application. Please confirm your password before continuing.
         </div>
@@ -36,4 +40,5 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+    </AuthFormContainer>
 </template>

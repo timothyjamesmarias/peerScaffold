@@ -7,6 +7,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { Link, Head } from '@inertiajs/inertia-vue3';
+import PageTitle from '../js/Components/PageTitle.vue';
 import DefaultLayout from '../js/Layouts/AppLayout.vue';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
@@ -25,6 +26,7 @@ createInertiaApp({
             .use(plugin)
             .component("Link", Link)
             .component("Head", Head)
+            .component("PageTitle", PageTitle)
             .use(ZiggyVue, Ziggy)
             .mount(el);
     },

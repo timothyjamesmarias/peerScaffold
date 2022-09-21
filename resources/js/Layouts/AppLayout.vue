@@ -6,11 +6,9 @@
 
 <template>
 
-    <header>
-        <Nav/>
-    </header>
+    <Nav/>
 
-    <main class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <main class="w-full mx-auto">
         <slot/>
     </main>
 

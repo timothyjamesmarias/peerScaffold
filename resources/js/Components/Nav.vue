@@ -13,7 +13,7 @@
     
     <nav class="flex justify-between p-4 bg-zinc-900 text-stone-200 sticky top-0 z-50">
             <Link href="/">
-                <ApplicationLogo class="w-10 h-10 fill-current text-gray-500" />
+                <ApplicationLogo class="w-5 h-5 fill-current text-gray-500" />
             </Link>
                 
         <ul v-if="$page.props.auth.user" class="flex align-center">

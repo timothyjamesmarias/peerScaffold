@@ -3,6 +3,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import AuthFormContainer from '@/Components/AuthFormContainer.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
@@ -21,7 +22,11 @@ const submit = () => {
 </script>
 
 <template>
-        <Head title="Register" />
+    <Head title="Register" />
+
+    <PageTitle>Sign Up</PageTitle>
+
+    <AuthFormContainer>
 
         <form @submit.prevent="submit">
             <div>
@@ -58,4 +63,5 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+    </AuthFormContainer>
 </template>
