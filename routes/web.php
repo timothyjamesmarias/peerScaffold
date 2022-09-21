@@ -3,6 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ListingController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +31,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard/settings', function () {
+    return Inertia::render('Settings');
+})->middleware(['auth', 'verified'])->name('dashboard.settings');
+
+Route::get('/users/{user}/profile', 'ProfileController@index')->name('profile');
+
 
 require __DIR__.'/auth.php';

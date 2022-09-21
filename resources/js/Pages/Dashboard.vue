@@ -5,4 +5,10 @@
 <template>
     <Head title="Dashboard" />
 
+    <PageTitle>My Profile</PageTitle>
+
+    <div>
+        
+    </div>
+
 </template>
