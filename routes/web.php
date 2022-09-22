@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\TransactionController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
+//HOME PAGE
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -28,15 +30,26 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//USER MODEL PAGE ROUTES
+
+//USER DASHBOARD ROUTES
+Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard/settings', function () {
     return Inertia::render('Settings');
 })->middleware(['auth', 'verified'])->name('dashboard.settings');
 
-Route::get('/users/{user}/profile', 'ProfileController@index')->name('profile');
+Route::controller(ProfileController::class)->group(function(){
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/profile/dashboard', 'dashboard')->name('dashboard');
+        Route::get('/profile/setup', 'create')->name('profile.create');
+        Route::get('/profile/edit', 'edit')->name('profile.edit');
+    });
+});
+
+
+//USER PROFILE ROUTE
+Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('profile');
 
 
 require __DIR__.'/auth.php';
