@@ -9,6 +9,7 @@ use Redirect;
 class ProfileController extends Controller
 {
     public function create(){
+        /*
         $user = Auth::user();
         
         if ($user->address == ''){
@@ -17,6 +18,7 @@ class ProfileController extends Controller
         else{
             return redirect()->route('dashboard');
         }
+        */
     }
 
     public function edit(){
@@ -25,8 +27,8 @@ class ProfileController extends Controller
 
     public function dashboard(){
         
+        /*
         $user = Auth::user();
-
         if ($user->address == ''){
             return redirect()->route('profile.create');
         }
@@ -35,6 +37,12 @@ class ProfileController extends Controller
 
             ]);
         }
+        */
+
+        return Inertia::render('Profile/Dashboard',[
+
+        ]);
+
     }
 
     public function show(User $user){
@@ -47,7 +55,6 @@ class ProfileController extends Controller
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
-                'address' => $user->address,
                 'avatar_path' => $user->avatar_path
             ]
         ]);

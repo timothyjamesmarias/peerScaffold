@@ -42,11 +42,10 @@ Route::get('/dashboard/settings', function () {
 Route::controller(ProfileController::class)->group(function(){
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/profile/dashboard', 'dashboard')->name('dashboard');
-        Route::get('/profile/setup', 'create')->name('profile.create');
-        Route::get('/profile/edit', 'edit')->name('profile.edit');
+        //Route::get('/profile/setup', 'create')->name('profile.create');
+        //Route::get('/profile/edit', 'edit')->name('profile.edit');
     });
 });
-
 
 //USER PROFILE ROUTE
 Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('profile');

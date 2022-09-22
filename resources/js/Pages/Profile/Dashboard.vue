@@ -1,14 +1,13 @@
 <script setup>
+import DashboardCard from '@/Components/DashboardCard.vue';
 
 </script>
 
 <template>
     <Head title="Dashboard" />
 
-    <PageTitle>My Profile</PageTitle>
+    <PageTitle>Dashboard</PageTitle>
 
-    <div>
-        
-    </div>
+    
 
 </template>

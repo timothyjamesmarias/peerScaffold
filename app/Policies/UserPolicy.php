@@ -17,7 +17,6 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //user profiles should be publically visible
         return true;
     }
 
@@ -30,7 +29,8 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        //user profiles should be publically visible
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -53,7 +53,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //
+        return false;
     }
 }
