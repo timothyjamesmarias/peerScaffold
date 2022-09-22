@@ -1,10 +1,10 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import AuthFormContainer from '@/Components/AuthFormContainer.vue';
+import { useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
     name: '',
@@ -22,8 +22,11 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Register" />
+    <Head title="Register" />
+
+    <PageTitle>Sign Up</PageTitle>
+
+    <AuthFormContainer>
 
         <form @submit.prevent="submit">
             <div>
@@ -60,5 +63,5 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
-    </GuestLayout>
+    </AuthFormContainer>
 </template>
