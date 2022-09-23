@@ -53,6 +53,7 @@ Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('p
 
 //LISTING MODEL ROUTES
 
+Route::get('/listings/create', [ListingController::class, 'create'])->name('listing.create');
 
 
 Route::controller(ListingController::class)->group(function(){
@@ -60,9 +61,8 @@ Route::controller(ListingController::class)->group(function(){
     Route::get('/listings/{listing}', 'show')->name('listing.show');
 
     Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/listings/create', 'create')->name('listing.create');
         Route::post('/listings', 'store')->name('listing.store');
-        Route::get('/listings', 'index')->name('listings.index');
+        Route::get('/listings', 'index')->name('listing.index');
         Route::get('/listings/{listing}/edit', 'edit')->name('listing.edit');
         Route::put('/listings/{listing}', 'update')->name('listing.update');
     });

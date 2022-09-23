@@ -37,7 +37,15 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',            
+            'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'images' => 'required|image|mimes:png,jpg,webp'
+        ]);
+
+        
     }
 
     /**

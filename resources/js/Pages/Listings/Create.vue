@@ -3,11 +3,18 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+
 import DatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import { useForm } from '@inertiajs/inertia-vue3';
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import Uppy from '@uppy/core'
+//import { Dashboard } from '@uppy/vue'
+//import '@uppy/core/dist/style.css'
+//import '@uppy/dashboard/dist/style.css'
+
+import { useForm } from '@inertiajs/inertia-vue3';
+
 
 const form = useForm({
     title: null,

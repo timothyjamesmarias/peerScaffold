@@ -18,7 +18,7 @@ class ListingPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class ListingPolicy
      */
     public function view(User $user, Listing $listing)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class ListingPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class ListingPolicy
      */
     public function restore(User $user, Listing $listing)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class ListingPolicy
      */
     public function forceDelete(User $user, Listing $listing)
     {
-        //
+        return true;
     }
 }
