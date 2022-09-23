@@ -51,4 +51,23 @@ Route::controller(ProfileController::class)->group(function(){
 Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('profile');
 
 
+//LISTING MODEL ROUTES
+
+Route::get('/listings/create', [ListingController::class, 'create'])->name('listing.create');
+
+
+Route::controller(ListingController::class)->group(function(){
+    Route::get('/listings',[ListingController::class, 'index'])->name('listing.index');
+    Route::get('/listings/{listing}',[ListingController::class, 'show'])->name('listing.show');
+
+    
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::post('/listings', [ListingController::class, 'store'])->name('listing.store');
+        Route::get('/listings',[ListingController::class, 'index'])->name('listings.index');
+        Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->name('listing.edit');
+        Route::put('/listings/{listing}', [ListingController::class, 'update'])->name('listing.update');
+    });
+});
+
+
 require __DIR__.'/auth.php';

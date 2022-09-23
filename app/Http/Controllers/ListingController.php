@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
+use Inertia\Inertia;
 
 class ListingController extends Controller
 {
@@ -25,7 +26,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Listings/Create');
     }
 
     /**
