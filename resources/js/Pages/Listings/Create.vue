@@ -46,7 +46,7 @@ const submit = () =>{
         </div>
 
         <div>
-            <InputLabel for="description" value="Category"/>
+            <InputLabel for="description" value="Listing Description"/>
             <QuillEditor />
         </div>
 

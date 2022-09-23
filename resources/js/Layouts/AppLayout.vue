@@ -8,7 +8,7 @@
 
     <Nav/>
 
-    <main class="w-full mx-auto">
+    <main class="w-full mx-auto px-4">
         <slot/>
     </main>
 
