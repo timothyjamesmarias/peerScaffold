@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "@uppy/core": "^3.0.1",
-        "@uppy/dashboard": "^3.0.1",
+        "@uppy/dashboard": "^3.1.0",
+        "@uppy/drag-drop": "^3.0.1",
+        "@uppy/progress-bar": "^3.0.1",
         "@uppy/vue": "^1.0.0",
         "@vuepic/vue-datepicker": "^3.4.8",
         "@vueup/vue-quill": "^1.0.0-beta.10"

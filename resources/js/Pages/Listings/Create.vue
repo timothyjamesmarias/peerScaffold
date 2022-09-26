@@ -3,18 +3,10 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-
-import DatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import Uppy from '@uppy/core'
-//import { Dashboard } from '@uppy/vue'
-//import '@uppy/core/dist/style.css'
-//import '@uppy/dashboard/dist/style.css'
-
+import DatePicker from '@/Components/DatePicker.vue';
+import UppyDashboard from '@/Components/UppyDashboard.vue';
+import RichTextEditor from '@/Components/RichTextEditor.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-
 
 const form = useForm({
     title: null,
@@ -54,21 +46,25 @@ const submit = () =>{
 
         <div>
             <InputLabel for="description" value="Listing Description"/>
-            <QuillEditor />
+            <RichTextEditor id="description" />
         </div>
 
         <div class="flex">
             <div>
                 <InputLabel for="start_date" value="From:"/>
                 <DatePicker id="start_date" v-model="form.start_date"/>
-                <InputError class="mt-2" :message="form.errors.start_date"/>    
+                <InputError class="mt-2" :message="form.errors.start_date"/>
             </div>
             <div>
                 <InputLabel for="end_date" value="Until:"/>
-                <DatePicker id="end_date" v-model="form.end_date"/>    
-                <InputError class="mt-2" :message="form.errors.end_date"/>    
+                <DatePicker id="end_date" v-model="form.end_date"/>
+                <InputError class="mt-2" :message="form.errors.end_date"/>
             </div>
-        </div>        
+        </div>
+
+        <div class="mt-4">
+            <UppyDashboard v-model="form.images"/>
+        </div>
 
         <div class="flex justify-end mt-4">
             <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
