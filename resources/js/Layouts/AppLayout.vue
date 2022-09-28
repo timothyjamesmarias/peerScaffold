@@ -8,14 +8,14 @@
 
     <Nav/>
 
-    <main class="w-full mx-auto px-4">
+    <main class="w-full mx-auto px-4 min-h-screen">
         <slot/>
     </main>
 
     <footer>
 
     </footer>
-    
+
 </template>
 
 <style scoped>

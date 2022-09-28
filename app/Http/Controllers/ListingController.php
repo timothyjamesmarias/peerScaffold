@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
+use App\Models\ListingImage;
 use Inertia\Inertia;
 
 class ListingController extends Controller
@@ -38,14 +39,32 @@ class ListingController extends Controller
     public function store(StoreListingRequest $request)
     {
         $data = $request->validate([
-            'title' => 'required',            
+            'title' => 'required',
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             'images' => 'required|image|mimes:png,jpg,webp'
         ]);
 
-        
+        $listing = Listing::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+
+        if ($request->hasFile('images')){
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $pathName = $image->store('listings');
+                $listingImage = ListingImage::create([
+                    'path' => $pathName,
+                    'id' => $listing->id
+                ]);
+                $listingImage->save();
+            }
+        }
+
     }
 
     /**
@@ -56,7 +75,12 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        //
+        return Inertia::render('Listings/Show',[
+            'listing' => Listing::findOrFail($listing),
+            'images' => ListingImage::query()
+            ->where('listing_id', '=', $listing->id)
+            ->get()
+        ]);
     }
 
     /**
@@ -90,6 +114,8 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        //
+        $listing = Listing::find($listing);
+        abort_if($listing == null, 404);
+        $listing->delete();
     }
 }
