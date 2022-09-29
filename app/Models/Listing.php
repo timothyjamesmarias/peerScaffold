@@ -39,4 +39,8 @@ class Listing extends Model
     {
         return $this->hasMany(ListingImage::class);
     }
+
+    protected $fillable = [
+        'title', 'category', 'description', 'start_date', 'end_date', 'user_id'
+    ];
 }

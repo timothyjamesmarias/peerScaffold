@@ -16,7 +16,7 @@ onBeforeUnmount(()=>{
 </script>
 
 <template>
-    <dashboard :uppy="uppy" class="!w-full"/>
+    <dashboard :uppy="uppy"/>
 </template>
 
 <style scoped>

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
 use App\Models\ListingImage;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ListingController extends Controller
@@ -38,19 +39,24 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
+        /*
         $data = $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'images' => 'required|image|mimes:png,jpg,webp'
+            'category' => 'required',
+            //'description' => 'required',
+            //'start_date' => 'required',
+            //'end_date' => 'required',
+            //'images' => 'required|image|mimes:png,jpg,webp'
         ]);
+        */
 
         $listing = Listing::create([
             'title' => $request->title,
-            'description' => $request->description,
+            'category' => $request->category,
+            'description' => '',
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'user_id' => $request->user()->id
         ]);
 
         if ($request->hasFile('images')){
@@ -59,11 +65,13 @@ class ListingController extends Controller
                 $pathName = $image->store('listings');
                 $listingImage = ListingImage::create([
                     'path' => $pathName,
-                    'id' => $listing->id
+                    'listing_id' => $listing->id
                 ]);
                 $listingImage->save();
             }
         }
+
+        return redirect(route('dashboard'), 201);
 
     }
 
@@ -103,7 +111,6 @@ class ListingController extends Controller
      */
     public function update(UpdateListingRequest $request, Listing $listing)
     {
-        //
     }
 
     /**
