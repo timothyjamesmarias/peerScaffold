@@ -3,14 +3,24 @@ import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import Uppy from '@uppy/core'
 import { Dashboard } from '@uppy/vue'
-import { computed, onBeforeUnmount } from 'vue';
+import Form from '@uppy/form'
+import { computed, onBeforeUnmount } from 'vue'
 
-const uppy = computed(()=>{
-    return new Uppy;
+const props = defineProps({
+  target: {
+    type: String,
+    default: null
+  }
 })
 
-onBeforeUnmount(()=>{
-    uppy.close({reason: 'unmount'});
+const uppy = computed(() => {
+  return new Uppy().use(Form, {
+    target: props.target
+  })
+})
+
+onBeforeUnmount(() => {
+  uppy.value.close({ reason: 'unmount' })
 })
 
 </script>

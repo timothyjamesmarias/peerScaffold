@@ -28,7 +28,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 //USER MODEL PAGE ROUTES
 
@@ -55,11 +55,10 @@ Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('p
 
 Route::get('/listings/create', [ListingController::class, 'create'])->name('listing.create')->middleware(['auth', 'verified']);
 Route::post('/listings', [ListingController::class, 'store'])->name('listing.store')->middleware(['auth', 'verified']);
-
+Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listing.show');
 
 Route::controller(ListingController::class)->group(function(){
     Route::get('/listings', 'index')->name('listing.index');
-    Route::get('/listings/{listing}', 'show')->name('listing.show');
 
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/listings', 'index')->name('listing.index');

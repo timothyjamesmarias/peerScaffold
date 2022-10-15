@@ -39,16 +39,14 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        /*
         $data = $request->validate([
             'title' => 'required',
             'category' => 'required',
             //'description' => 'required',
-            //'start_date' => 'required',
-            //'end_date' => 'required',
-            //'images' => 'required|image|mimes:png,jpg,webp'
+            'start_date' => 'required',
+            'end_date' => 'required',
+            //'images' => 'required|image|mimes:png,jpg,webp,jpeg'
         ]);
-        */
 
         $listing = Listing::create([
             'title' => $request->title,
@@ -71,7 +69,8 @@ class ListingController extends Controller
             }
         }
 
-        return redirect(route('dashboard'), 201);
+        return redirect()->route('welcome');
+        //redirect()->route('listing.show', $listing);
 
     }
 
