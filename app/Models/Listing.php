@@ -25,9 +25,9 @@ class Listing extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function requests(): HasMany
+    public function bookings(): HasMany
     {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(Booking::class);
     }
 
     /**
