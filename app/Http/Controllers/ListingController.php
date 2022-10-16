@@ -70,7 +70,6 @@ class ListingController extends Controller
         }
 
         return redirect()->route('listing.show', $listing);
-        //redirect()->route('listing.show', $listing);
 
     }
 
@@ -83,7 +82,7 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         return Inertia::render('Listings/Show',[
-            'listing' => Listing::findOrFail($listing),
+            'listing' => Listing::find($listing),
             'images' => ListingImage::query()
             ->where('listing_id', '=', $listing->id)
             ->get()

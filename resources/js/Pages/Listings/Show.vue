@@ -1,6 +1,7 @@
 <script setup>
-import { objectToString } from '@vue/shared';
-
+import PageTitle from '@/Components/PageTitle.vue';
+import ContentTitle from '../../Components/ContentTitle.vue';
+import ContentParagraph from '../../Components/ContentParagraph.vue';
 
 defineProps({
   listing: {
@@ -15,5 +16,11 @@ defineProps({
 </script>
 
 <template>
-{{listing}}
+
+<PageTitle>{{listing[0].title}}</PageTitle>
+
+<div class="grid grid-cols-2">
+    <ContentTitle>Description</ContentTitle>
+    <ContentParagraph>{{listing[0].title}}</ContentParagraph>
+</div>
 </template>
