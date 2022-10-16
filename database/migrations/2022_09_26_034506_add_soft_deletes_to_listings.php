@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('listing_images', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('path');
-            $table->foreignId('listing_id')->constrained()->onDelete('cascade')->index();
+        Schema::table('listings', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('listing_images');
+        Schema::table('listings', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

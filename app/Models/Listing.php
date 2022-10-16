@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Listing extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * Get the user that owns the Listing
@@ -38,4 +39,8 @@ class Listing extends Model
     {
         return $this->hasMany(ListingImage::class);
     }
+
+    protected $fillable = [
+        'title', 'category', 'description', 'start_date', 'end_date', 'user_id'
+    ];
 }

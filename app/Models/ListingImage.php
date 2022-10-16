@@ -9,6 +9,8 @@ class ListingImage extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['path', 'listing_id'];
+
     /**
      * Get the listing that owns the ListingImage
      *
