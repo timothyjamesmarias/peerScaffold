@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response as AccessResponse;
 
 class ListingPolicy
 {
@@ -18,6 +19,7 @@ class ListingPolicy
      */
     public function viewAny(User $user)
     {
+        //users can view all listings
         return true;
     }
 
@@ -30,6 +32,7 @@ class ListingPolicy
      */
     public function view(User $user, Listing $listing)
     {
+        //users can view all listings
         return true;
     }
 
@@ -41,7 +44,8 @@ class ListingPolicy
      */
     public function create(User $user)
     {
-        return true;
+        //all users whose accounts are active may create listings
+        return !($user->trashed()) ? AccessResponse::allow() : AccessResponse::deny();
     }
 
     /**
@@ -53,7 +57,21 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        return true;
+        //check that listing belongs to user
+        if ($user->id === $listing->user_id) {
+            //if the user is deleted, then deny
+            if ($user->trashed()) {
+                return AccessResponse::deny();
+            }
+            //if the user is active, allow
+            else {
+                return AccessResponse::allow();
+            }
+        }
+        //if the listing does not belong to the user, deny
+        else{
+            return AccessResponse::deny();
+        }
     }
 
     /**
@@ -65,7 +83,21 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing)
     {
-        return true;
+        //check that listing belongs to user
+        if ($user->id === $listing->user_id) {
+            //if the user is deleted, then deny
+            if ($user->trashed()) {
+                return AccessResponse::deny();
+            }
+            //if the user is active, allow
+            else {
+                return AccessResponse::allow();
+            }
+        }
+        //if the listing does not belong to the user, deny
+        else{
+            return AccessResponse::deny();
+        }
     }
 
     /**
@@ -77,7 +109,21 @@ class ListingPolicy
      */
     public function restore(User $user, Listing $listing)
     {
-        return true;
+        //check that listing belongs to user
+        if ($user->id === $listing->user_id) {
+            //if the user is deleted, then deny
+            if ($user->trashed()) {
+                return AccessResponse::deny();
+            }
+            //if the user is active, allow
+            else {
+                return AccessResponse::allow();
+            }
+        }
+        //if the listing does not belong to the user, deny
+        else{
+            return AccessResponse::deny();
+        }
     }
 
     /**
@@ -89,6 +135,6 @@ class ListingPolicy
      */
     public function forceDelete(User $user, Listing $listing)
     {
-        return true;
+        return $user->admin ? AccessResponse::allow() : AccessResponse::deny();
     }
 }

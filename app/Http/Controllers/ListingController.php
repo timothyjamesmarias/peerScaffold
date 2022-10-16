@@ -69,7 +69,7 @@ class ListingController extends Controller
             }
         }
 
-        return redirect()->route('welcome');
+        return redirect()->route('listing.show', $listing);
         //redirect()->route('listing.show', $listing);
 
     }
